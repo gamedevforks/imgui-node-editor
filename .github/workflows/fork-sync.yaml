@@ -1,0 +1,22 @@
+name: 'Sync fork with parent repository'
+
+on:
+  schedule:
+    - cron: '*/60 * * * *' # every 60 minutes
+  workflow_dispatch: # on button click
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tgymnich/fork-sync@v1.8
+        with:
+#         token: ${{ secrets.PERSONAL_TOKEN }}
+#         owner: galek # Fork user - default your user name
+#         repo: minio-alpine # Name of the forked repository - default current repo
+          base: master # Main branch
+          head: master # Fork branch
+          merge_method: merge
+          pr_title: 'Fork Sync with main repository'
+          pr_message: 'Fork Sync with main repository'
+#         ignore_fail: ''
